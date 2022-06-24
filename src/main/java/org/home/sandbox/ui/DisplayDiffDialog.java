@@ -27,13 +27,13 @@ public class DisplayDiffDialog extends DialogWrapper {
     private final boolean myRebuildOnSessionEvents;
 
     public DisplayDiffDialog(@NotNull Project project,
-                          XDebuggerEditorsProvider editorsProvider,
-                          XSourcePosition sourcePosition,
-                          @NotNull String name,
-                          @NotNull XValue value,
-                          XValueMarkers<?, ?> markers,
-                          @Nullable XDebugSession session,
-                          boolean rebuildOnSessionEvents) {
+                             XDebuggerEditorsProvider editorsProvider,
+                             XSourcePosition sourcePosition,
+                             @NotNull String name,
+                             @NotNull XValue value,
+                             XValueMarkers<?, ?> markers,
+                             @Nullable XDebugSession session,
+                             boolean rebuildOnSessionEvents) {
         super(project, false);
         myRebuildOnSessionEvents = rebuildOnSessionEvents;
 
@@ -41,24 +41,19 @@ public class DisplayDiffDialog extends DialogWrapper {
         setModal(false);
 
         Pair<XValue, String> initialItem = Pair.create(value, name);
-        DebuggerTreeCreator creator = new DebuggerTreeCreator<Pair<XValue,String>>() {
+        DebuggerTreeCreator creator = new DebuggerTreeCreator<Pair<XValue, String>>() {
 
             @Override
-            public @NotNull String getTitle(@NotNull Pair<XValue,String> descriptor) {
+            public @NotNull String getTitle(@NotNull Pair<XValue, String> descriptor) {
                 return "THIS IS THE TITLE";
             }
 
             @Override
-            public void createDescriptorByNode(Object node, ResultConsumer<Pair<XValue,String>> resultConsumer) {
-//                if (node instanceof XValueNodeImpl) {
-//                    XValueNodeImpl valueNode = (XValueNodeImpl)node;
-//                    resultConsumer.onSuccess(Pair.create(valueNode.getValueContainer(), valueNode.getName()));
-//                }
-                System.out.printf("createDescriptorByNode");
+            public void createDescriptorByNode(Object node, ResultConsumer<Pair<XValue, String>> resultConsumer) {
             }
 
             @Override
-            public @NotNull Tree createTree(@NotNull Pair<XValue,String> descriptor) {
+            public @NotNull Tree createTree(@NotNull Pair<XValue, String> descriptor) {
                 final ColorfulTree tree = new ColorfulTree(project, editorsProvider, sourcePosition, XDebuggerActions.INSPECT_TREE_POPUP_GROUP, markers);
                 final XValueNodeImpl root = new XValueNodeImpl(tree, null, descriptor.getSecond(), descriptor.getFirst());
                 tree.setRoot(root, false);
