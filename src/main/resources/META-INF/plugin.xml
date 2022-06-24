@@ -5,6 +5,8 @@
     <vendor>JetBrains</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.java</depends>
+    <depends>com.intellij.modules.xdebugger</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="org.jetbrains.plugins.template.services.MyApplicationService"/>
@@ -15,4 +17,24 @@
         <listener class="org.jetbrains.plugins.template.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <projectService serviceImplementation="org.home.sandbox.SaveVariableService"/>
+    </extensions>
+
+    <actions>
+        <action id="org.home.sandbox.SaveVariable"
+                text="Save variable"
+                class="org.home.sandbox.action.SaveVariableAction">
+            <add-to-group group-id="XDebugger.ValueGroup" anchor="last"/>
+        </action>
+
+        <action id="org.home.sandbox.OpenSavedVariables"
+                text="Open saved variables"
+                class="org.home.sandbox.action.OpenSavedVariablesAction">
+            <add-to-group group-id="XDebugger.ValueGroup" anchor="last"/>
+        </action>
+    </actions>
+
+
 </idea-plugin>

@@ -222,7 +222,7 @@ The IntelliJ Platform Plugin Template project provides integration of two testin
 Most of the IntelliJ Platform codebase tests are model-level, run in a headless environment using an actual IDE instance.
 The tests usually test a feature as a whole rather than individual functions that comprise its implementation, like in unit tests.
 
-In `src/test/kotlin`, you'll find a basic `MyPluginTest` test that utilizes `BasePlatformTestCase` and runs a few checks against the XML files to indicate an example operation of creating files on the fly or reading them from `src/test/resources/rename` test resources.
+In `src/test/kotlin`, you'll find a basic `MyPluginTest` test that utilizes `BasePlatformTestCase` and runs a few checks against the XML files to indicate an example operationType of creating files on the fly or reading them from `src/test/resources/rename` test resources.
 
 > **TIP:** Run your tests using predefined *Run Tests* configuration or by invoking the `./gradlew test` Gradle task.
 
@@ -425,7 +425,7 @@ To find out how to generate signing certificates, check the [Plugin Signing][doc
 
 ### Publishing the plugin
 
-Releasing a plugin to JetBrains Marketplace is a straightforward operation that uses the `publishPlugin` Gradle task provided by the [gradle-intellij-plugin][gh:gradle-intellij-plugin].
+Releasing a plugin to JetBrains Marketplace is a straightforward operationType that uses the `publishPlugin` Gradle task provided by the [gradle-intellij-plugin][gh:gradle-intellij-plugin].
 In addition, the [Release](.github/workflows/release.yml) workflow automates this process by running the task when a new release appears in the GitHub Releases section.
 
 > **TIP**: Set a suffix to the plugin version to publish it in the custom repository channel, i.e. `v1.0.0-beta` will push your plugin to the `beta` [release channel][docs:release-channel].

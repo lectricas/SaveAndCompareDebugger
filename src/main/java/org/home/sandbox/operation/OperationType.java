@@ -1,46 +1,44 @@
 // Copyright 2000-2022 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license.
-package org.jetbrains.plugins.template.sandbox;
+package org.home.sandbox.operation;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * User: gopi.vishwakarma
- * Date: 30/07/14
- */
-public enum Operation {
+
+public enum OperationType {
     ADD("add"),
     REMOVE("remove"),
     REPLACE("replace"),
     MOVE("move"),
+    MOVE_OLD("move_old"),
     COPY("copy"),
-    TEST("test");
+    NOTHING("nothing");
 
-    private final static Map<String, Operation> OPS = createImmutableMap();
+    private final static Map<String, OperationType> OPS = createImmutableMap();
 
-    private static Map<String, Operation> createImmutableMap() {
-        Map<String, Operation> map = new HashMap<String, Operation>();
+    private static Map<String, OperationType> createImmutableMap() {
+        Map<String, OperationType> map = new HashMap<String, OperationType>();
         map.put(ADD.rfcName, ADD);
         map.put(REMOVE.rfcName, REMOVE);
         map.put(REPLACE.rfcName, REPLACE);
         map.put(MOVE.rfcName, MOVE);
         map.put(COPY.rfcName, COPY);
-        map.put(TEST.rfcName, TEST);
+        map.put(NOTHING.rfcName, NOTHING);
         return Collections.unmodifiableMap(map);
     }
 
     private String rfcName;
 
-    public String previousName;
+    public boolean isPrevious = false;
 
-    Operation(String rfcName) {
+    OperationType(String rfcName) {
         this.rfcName = rfcName;
     }
 
-    public static Operation fromRfcName(String rfcName) throws IllegalArgumentException {
+    public static OperationType fromRfcName(String rfcName) throws IllegalArgumentException {
         if (rfcName == null) throw new IllegalArgumentException("rfcName cannot be null");
-        Operation op = OPS.get(rfcName.toLowerCase());
+        OperationType op = OPS.get(rfcName.toLowerCase());
         if (op == null) throw new IllegalArgumentException("unknown / unsupported operation " + rfcName);
         return op;
     }

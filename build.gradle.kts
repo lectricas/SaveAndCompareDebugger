@@ -25,6 +25,7 @@ repositories {
 }
 dependencies {
     implementation("com.flipkart.zjsonpatch:zjsonpatch:0.4.12")
+    implementation("commons-io:commons-io:2.11.0")
 }
 
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
