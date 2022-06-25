@@ -36,7 +36,7 @@ public class PathUtil {
                 root.put(path, OperationType.REMOVE);
                 break;
             case REPLACE: {// change value
-                root.put(path, OperationType.ADD);
+                root.put(path, OperationType.REPLACE);
                 break;
             }
             case MOVE: {// new variableName(or path) with same value

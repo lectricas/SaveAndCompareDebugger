@@ -86,13 +86,21 @@ public class PatchedObject extends XNamedValue {
 
             if (operations.containsKey(oldKey)) {
                 SElement value = oldE.getValue();
-                value.whatChanged = operations.get(oldKey);
+                if (operations.get(oldKey).equals(OperationType.REPLACE)) {
+                    value.whatChanged = OperationType.REMOVE;
+                } else {
+                    value.whatChanged = operations.get(oldKey);
+                }
                 children.add(value);
             }
 
             if (operations.containsKey(newKey)) {
                 SElement value = newE.getValue();
-                value.whatChanged = operations.get(newKey);
+                if (operations.get(newKey).equals(OperationType.REPLACE)) {
+                    value.whatChanged = OperationType.ADD;
+                } else {
+                    value.whatChanged = operations.get(oldKey);
+                }
                 children.add(value);
             } else {
                 if (oldE.getValue() instanceof SPrimitive && newE.getValue() instanceof SPrimitive) {
